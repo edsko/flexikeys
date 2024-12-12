@@ -31,8 +31,8 @@ setinletassist(2, "Out Low");
 setinletassist(3, "Out Hi");
 setinletassist(4, "Set all four parameters at once (list)")
 
-setoutletassist(0, "Instructions for the itable");
-setoutletassist(1, "New parameters (list)")
+setoutletassist(0, "New parameters (list)")
+setoutletassist(1, "Instructions for the itable");
 
 // Globals
 
@@ -164,7 +164,8 @@ function msg_int(n) {
             }
         }
 
-        outlet(0, itable);
+        outlet(1, itable);
+        outlet(0, [drive, comp, outLow, outHi]);
     }
 }
 

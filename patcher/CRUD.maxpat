@@ -82,8 +82,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 225.0, 257.0, 71.0, 18.0 ],
-					"text" : "delete \"pitch 31\""
+					"patching_rect" : [ 225.0, 257.0, 84.0, 18.0 ],
+					"text" : "delete \"keyswitch 24\""
 				}
 
 			}
@@ -140,7 +140,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "Instructions for coll object (only retrievals result in output)",
 					"id" : "obj-31",
 					"index" : 1,
 					"maxclass" : "outlet",
@@ -263,7 +263,7 @@
 
 			}
  ],
-		"originid" : "pat-134",
+		"originid" : "pat-313",
 		"saved_attribute_attributes" : 		{
 			"default_plcolor" : 			{
 				"expression" : ""

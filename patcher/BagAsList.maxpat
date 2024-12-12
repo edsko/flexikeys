@@ -14,6 +14,31 @@
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-6",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 495.0, 75.0, 35.0, 22.0 ],
+					"text" : "clear"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"comment" : "Bang to clear the bag",
+					"id" : "obj-1",
+					"index" : 3,
+					"maxclass" : "inlet",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 495.0, 15.0, 30.0, 30.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-14",
 					"maxclass" : "comment",
 					"numinlets" : 1,
@@ -144,7 +169,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "Directly passed to the bag object",
+					"comment" : "And or remove item from the bag (list)",
 					"id" : "obj-175",
 					"index" : 2,
 					"maxclass" : "inlet",
@@ -215,6 +240,13 @@
 			}
  ],
 		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-6", 0 ],
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
 				"patchline" : 				{
 					"destination" : [ "obj-159", 1 ],
 					"midpoints" : [ 454.75, 209.0, 354.5, 209.0 ],
@@ -345,8 +377,16 @@
 				}
 
 			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-122", 0 ],
+					"midpoints" : [ 504.5, 121.0, 454.75, 121.0 ],
+					"source" : [ "obj-6", 0 ]
+				}
+
+			}
  ],
-		"originid" : "pat-40",
+		"originid" : "pat-195",
 		"oscreceiveudpport" : 0
 	}
 
