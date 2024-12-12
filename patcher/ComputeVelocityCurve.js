@@ -4,6 +4,9 @@
  * @copyright Edsko de Vries, 2024
  * @license MIT
  *
+ * NOTE: This is intended for use with the Max for Live `v8` patcher, _not_ the
+ * legacy `js` patcher; we make use of ES6 features. Requires Max 9.0 or higher.
+ *
  * References
  * - https://docs.cycling74.com/apiref/js/
  * - https://docs.cycling74.com/learn/articles/javascriptchapter01/
@@ -128,24 +131,98 @@ function msg_int(n) {
             prevOutHi  = outHi;
         }
 
-        // Always leave velocity 0 ("note off") at 0.
-        outlet(0, [0, 0]);
+        // Initialize `set` instruction for the `itable`.
+        let itable = [
+            "set",
+            0 /* starting table index */,
+            0 /* leave velocity 0 ("note off") always at 0 */
+        ];
 
         // Recompute the curve
         // We special case some curves that are faster to compute.
-        if(drive == 0 && comp == 0 && outLow == 0 && outHi == 127) {
-            // Default parameters
-            for(i = 1; i <= 127; i++) {
-                outlet(0, [i, i]);
-            }
-        } else if(prevDrive == 0 && prevComp == 0) {
-            // Only outLow and outHi have non-default parameters.
-            // This is a much faster computation than the general case.
-            for(i = 1; i <= 127; i++) {
-                outlet(0, [i, outLow + (i / 127) * (outHi - outLow)]);
+        if(drive == 0) {
+            if(comp == 0) {
+                if(outLow == 0 && outHi == 127) {
+                    // Default parameters, trivial computation
+                    for(i = 1; i <= 127; i++) {
+                        itable.push(i);
+                    }
+                } else {
+                    // Straight line (`comp` is zero)
+                    for(i = 1; i <= 127; i++) {
+                        itable.push(squashRange(outLow, outHi, i));
+                    }
+                }
+            } else {
+                // Curved (`comp` is non-zero)
+                for(i = 1; i <= 127; i++) {
+                    itable.push(squashRange(outLow, outHi, compand(comp, i)));
+                }
             }
         } else {
             // General case
         }
+
+        outlet(0, itable);
+    }
+}
+
+/* -----------------------------------------------------------------------------
+  Auxiliary functions to compute the curve
+----------------------------------------------------------------------------- */
+
+with (Math) {
+    // Translate velocity from input range [0:127] to [-1:1]
+    function fromVelocity(velocity) {
+        return -1 + (velocity / 127) * 2;
+    }
+
+    // Translate output range [-1:1] to velocity in range [0:127]
+    function toVelocity(y) {
+        return (y + 1) / 2 * 127;
+    }
+
+    // Choose μ from `comp` parameter
+    // We do this (somewhat arbitrarily) by translating [0:1] to [0:100].
+    function chooseMu(comp) {
+        return pow(10.0, 2 * comp);
+    }
+
+    // Compression (`comp` is positive)
+    function compress(comp, velocity) {
+        let mu  = chooseMu(comp);
+        let inp = fromVelocity(velocity);
+
+        return toVelocity(
+              sign(inp)
+            * log(1 + mu * abs(inp))
+            / log(1 + mu)
+        );
+    }
+
+    // Expansion (`comp` is negative)
+    function expand(comp, velocity) {
+        let mu  = chooseMu(abs(comp));
+        let inp = fromVelocity(velocity);
+
+        return toVelocity(
+              sign(inp)
+            * (1.0 / mu)
+            * (pow(1.0 + mu, abs(inp)) - 1.0)
+        );
+    }
+
+    // Compansion (compression or expansion)
+    function compand(comp, velocity) {
+        if(comp >= 0) {
+            return compress(comp, velocity);
+        } else {
+            return expand(comp, velocity);
+        }
+    }
+
+    // Squash range to [low:hi]
+    function squashRange(low, hi, velocity) {
+        return low + (velocity / 127) * (hi - low)
     }
 }
