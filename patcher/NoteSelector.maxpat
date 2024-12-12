@@ -15,6 +15,33 @@
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-5",
+					"maxclass" : "live.numbox",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "float" ],
+					"parameter_enable" : 1,
+					"patching_rect" : [ 60.0, 240.0, 30.0, 15.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 752.0, 30.0, 30.0, 15.0 ],
+					"saved_attribute_attributes" : 					{
+						"valueof" : 						{
+							"parameter_longname" : "live.numbox",
+							"parameter_modmode" : 4,
+							"parameter_osc_name" : "<default>",
+							"parameter_shortname" : "live.numbox",
+							"parameter_type" : 1,
+							"parameter_unitstyle" : 8
+						}
+
+					}
+,
+					"varname" : "live.numbox"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"fontsize" : 8.0,
 					"id" : "obj-6",
 					"linecount" : 4,
@@ -29,7 +56,7 @@
 			}
 , 			{
 				"box" : 				{
-					"hkeycolor" : [ 0.55, 0.62, 0.78, 1.0 ],
+					"hkeycolor" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"id" : "obj-17",
 					"maxclass" : "kslider",
 					"mode" : 1,
@@ -41,7 +68,14 @@
 					"patching_rect" : [ 15.0, 180.0, 525.0, 34.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 750.0, 45.0 ],
-					"range" : 128
+					"range" : 128,
+					"saved_attribute_attributes" : 					{
+						"hkeycolor" : 						{
+							"expression" : "themecolor.#1"
+						}
+
+					}
+
 				}
 
 			}
@@ -97,7 +131,7 @@
 				"box" : 				{
 					"comment" : "(De)selected notes (one at a time)",
 					"id" : "obj-3",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -110,11 +144,11 @@
 					"comment" : "Bang to clear selection",
 					"cool" : 1,
 					"id" : "obj-2",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 105.0, 15.0, 30.0, 30.0 ]
 				}
 
@@ -123,7 +157,7 @@
 				"box" : 				{
 					"comment" : "Select list of notes",
 					"id" : "obj-1",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -190,14 +224,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 300.0, 20.5, 240.0, 135.0 ],
-					"proportion" : 0.39,
-					"saved_attribute_attributes" : 					{
-						"bgfillcolor" : 						{
-							"expression" : ""
-						}
-
-					}
-
+					"proportion" : 0.39
 				}
 
 			}
@@ -249,6 +276,15 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-143", 0 ],
+					"order" : 1,
+					"source" : [ "obj-17", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 0 ],
+					"order" : 0,
 					"source" : [ "obj-17", 0 ]
 				}
 
@@ -290,14 +326,23 @@
 
 			}
  ],
-		"originid" : "pat-564",
-		"saved_attribute_attributes" : 		{
-			"default_plcolor" : 			{
-				"expression" : ""
-			}
+		"originid" : "pat-62",
+		"parameters" : 		{
+			"obj-5" : [ "live.numbox", "live.numbox", 0 ],
+			"parameterbanks" : 			{
+				"0" : 				{
+					"index" : 0,
+					"name" : "",
+					"parameters" : [ "-", "-", "-", "-", "-", "-", "-", "-" ]
+				}
 
+			}
+,
+			"inherited_shortname" : 1
 		}
 ,
+		"dependency_cache" : [  ],
+		"autosave" : 0,
 		"oscreceiveudpport" : 0
 	}
 
