@@ -22,19 +22,17 @@ autowatch = 1;
 
 // Configure inlets and outlets
 
-inlets  = 6;
-outlets = 3;
+inlets  = 5;
+outlets = 2;
 
 setinletassist(0, "Drive");
 setinletassist(1, "Comp");
 setinletassist(2, "Out Low");
 setinletassist(3, "Out Hi");
 setinletassist(4, "Set all four parameters at once (list)")
-setinletassist(5, "Input velocity");
 
 setoutletassist(0, "Instructions for the itable");
 setoutletassist(1, "New parameters (list)")
-setoutletassist(2, "Computed output velocity")
 
 // Globals
 
