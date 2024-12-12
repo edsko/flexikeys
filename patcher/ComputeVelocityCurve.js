@@ -150,17 +150,20 @@ function msg_int(n) {
                 } else {
                     // Straight line (`comp` is zero)
                     for(i = 1; i <= 127; i++) {
-                        itable.push(squashRange(outLow, outHi, i));
+                        itable.push(fromVelocity(outLow, outHi, i));
                     }
                 }
             } else {
                 // Curved (`comp` is non-zero)
                 for(i = 1; i <= 127; i++) {
-                    itable.push(squashRange(outLow, outHi, compand(comp, i)));
+                    itable.push(fromVelocity(outLow, outHi, applyCompansion(comp, i)));
                 }
             }
         } else {
             // General case
+            for(i = 1; i <= 127; i++) {
+                itable.push(fromVelocity(outLow, outHi, applyCompansion(comp, applyDrive(drive, i))));
+            }
         }
 
         outlet(0, itable);
@@ -172,14 +175,14 @@ function msg_int(n) {
 ----------------------------------------------------------------------------- */
 
 with (Math) {
-    // Translate velocity from input range [0:127] to [-1:1]
-    function fromVelocity(velocity) {
-        return -1 + (velocity / 127) * 2;
+    // Translate velocity in range [0:127] to output range [low:hi]
+    function fromVelocity(low, hi, velocity) {
+        return low + (velocity / 127) * (hi - low)
     }
 
-    // Translate output range [-1:1] to velocity in range [0:127]
-    function toVelocity(y) {
-        return (y + 1) / 2 * 127;
+    // Translate input range [low:hi] to velocity in range [0:127]
+    function toVelocity(low, hi, x) {
+        return (x - low) / (hi - low) * 127;
     }
 
     // Choose μ from `comp` parameter
@@ -189,11 +192,14 @@ with (Math) {
     }
 
     // Compression (`comp` is positive)
-    function compress(comp, velocity) {
+    //
+    // `low` and `hi` determine which part of the compression curve we use.
+    // For regular compression, this should be [-1:1].
+    function compress(low, hi, comp, velocity) {
         let mu  = chooseMu(comp);
-        let inp = fromVelocity(velocity);
+        let inp = fromVelocity(low, hi, velocity);
 
-        return toVelocity(
+        return toVelocity(low, hi,
               sign(inp)
             * log(1 + mu * abs(inp))
             / log(1 + mu)
@@ -201,28 +207,37 @@ with (Math) {
     }
 
     // Expansion (`comp` is negative)
-    function expand(comp, velocity) {
+    //
+    // `low` and `hi` determine which part of the expansion curve we use.
+    // For regular expansion, this should be [-1:1].
+    function expand(low, hi, comp, velocity) {
         let mu  = chooseMu(abs(comp));
-        let inp = fromVelocity(velocity);
+        let inp = fromVelocity(low, hi, velocity);
 
-        return toVelocity(
+        return toVelocity(low, hi,
               sign(inp)
             * (1.0 / mu)
             * (pow(1.0 + mu, abs(inp)) - 1.0)
         );
     }
 
-    // Compansion (compression or expansion)
-    function compand(comp, velocity) {
+    // Apply compansion (compression or expansion)
+    function applyCompansion(comp, velocity) {
         if(comp >= 0) {
-            return compress(comp, velocity);
+            return compress(-1, 1, comp, velocity);
         } else {
-            return expand(comp, velocity);
+            return expand(-1, 1, comp, velocity);
         }
     }
 
-    // Squash range to [low:hi]
-    function squashRange(low, hi, velocity) {
-        return low + (velocity / 127) * (hi - low)
+    // Apply drive
+    //
+    // This is like `compansion`, but only uses the positive part of the curve.
+    function applyDrive(drive, velocity) {
+        if(drive >= 0) {
+            return compress(0, 1, drive, velocity);
+        } else {
+            return expand(0, 1, drive, velocity);
+        }
     }
 }
