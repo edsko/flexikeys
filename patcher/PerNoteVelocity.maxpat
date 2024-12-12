@@ -21,7 +21,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 92.0, 390.0, 140.0, 71.0 ],
+					"patching_rect" : [ 92.0, 345.0, 142.0, 71.0 ],
 					"text" : "We currently use the itable to do the translation. We could alternatively do the translation in JS, and regard the itable merely as an illustration of the curve. This might be faster, as it means we don't need to compute the entire curve for a single input. "
 				}
 
@@ -72,7 +72,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 259.0, 495.0, 30.0, 30.0 ]
+					"patching_rect" : [ 259.0, 450.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -84,7 +84,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 15.0, 495.0, 30.0, 30.0 ]
+					"patching_rect" : [ 15.0, 450.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -146,7 +146,7 @@
 					"numinlets" : 5,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 51.0, 330.0, 227.0, 22.0 ],
+					"patching_rect" : [ 51.0, 285.0, 227.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0
 					}
@@ -174,10 +174,10 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "int", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 15.0, 390.0, 75.0, 75.0 ],
+					"patching_rect" : [ 15.0, 345.0, 75.0, 75.0 ],
 					"pointcolor" : [ 1.0, 0.913725490196078, 0.145098039215686, 1.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 15.0, 150.0, 75.0, 75.0 ],
+					"presentation_rect" : [ 15.0, 75.0, 64.0, 64.0 ],
 					"range" : 128,
 					"size" : 128
 				}
@@ -185,7 +185,7 @@
 			}
 , 			{
 				"box" : 				{
-					"appearance" : 3,
+					"appearance" : 1,
 					"fontsize" : 10.0,
 					"id" : "obj-7",
 					"maxclass" : "live.dial",
@@ -193,9 +193,9 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 155.0, 246.0, 50.0, 65.0 ],
+					"patching_rect" : [ 155.0, 240.0, 39.0, 36.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 73.0, 50.0, 65.0 ],
+					"presentation_rect" : [ 45.0, 38.0, 45.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_initial" : [ 0.0 ],
@@ -216,7 +216,7 @@
 			}
 , 			{
 				"box" : 				{
-					"appearance" : 3,
+					"appearance" : 1,
 					"fontsize" : 10.0,
 					"id" : "obj-6",
 					"maxclass" : "live.dial",
@@ -224,9 +224,9 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 207.0, 246.0, 50.0, 65.0 ],
+					"patching_rect" : [ 207.0, 240.0, 33.0, 36.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 52.0, 73.0, 50.0, 65.0 ],
+					"presentation_rect" : [ 45.0, 0.0, 45.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_initial" : [ 127.0 ],
@@ -247,7 +247,7 @@
 			}
 , 			{
 				"box" : 				{
-					"appearance" : 3,
+					"appearance" : 1,
 					"fontsize" : 10.0,
 					"id" : "obj-4",
 					"maxclass" : "live.dial",
@@ -255,9 +255,9 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 103.0, 240.0, 50.0, 71.0 ],
+					"patching_rect" : [ 103.0, 240.0, 41.0, 36.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 52.0, 0.0, 50.0, 71.0 ],
+					"presentation_rect" : [ 0.0, 38.0, 45.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_initial" : [ 0.0 ],
@@ -281,7 +281,7 @@
 			}
 , 			{
 				"box" : 				{
-					"appearance" : 3,
+					"appearance" : 1,
 					"fontsize" : 10.0,
 					"id" : "obj-2",
 					"maxclass" : "live.dial",
@@ -289,9 +289,9 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 51.0, 240.0, 50.0, 71.0 ],
+					"patching_rect" : [ 51.0, 240.0, 39.0, 36.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 50.0, 71.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 45.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_initial" : [ 0.0 ],
@@ -338,7 +338,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-9", 0 ],
-					"midpoints" : [ 60.5, 375.0, 24.5, 375.0 ],
+					"midpoints" : [ 60.5, 330.0, 24.5, 330.0 ],
 					"source" : [ "obj-15", 0 ]
 				}
 
@@ -444,7 +444,7 @@
 
 			}
  ],
-		"originid" : "pat-149",
+		"originid" : "pat-169",
 		"parameters" : 		{
 			"obj-2" : [ "drive", "Drive", 0 ],
 			"obj-4" : [ "comp", "Comp", 0 ],
