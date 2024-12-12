@@ -153,6 +153,7 @@
 					"bgcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"embed" : 0,
 					"id" : "obj-9",
+					"ignoreclick" : 1,
 					"maxclass" : "itable",
 					"name" : "",
 					"numinlets" : 2,
