@@ -21,7 +21,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 320.0, 360.0, 111.0, 52.0 ],
+					"patching_rect" : [ 320.0, 360.0, 112.0, 52.0 ],
 					"text" : "JS runs in the low-priority thread, so we must defer the incoming velocity so ensure JS has had a chance to run before we process it."
 				}
 
@@ -358,6 +358,7 @@
 							"parameter_modmode" : 3,
 							"parameter_osc_name" : "<default>",
 							"parameter_shortname" : "Comp",
+							"parameter_steps" : 101,
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1
 						}
@@ -392,6 +393,7 @@
 							"parameter_modmode" : 3,
 							"parameter_osc_name" : "<default>",
 							"parameter_shortname" : "Drive",
+							"parameter_steps" : 101,
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1
 						}
@@ -578,7 +580,7 @@
 
 			}
  ],
-		"originid" : "pat-230",
+		"originid" : "pat-310",
 		"parameters" : 		{
 			"obj-2" : [ "drive", "Drive", 0 ],
 			"obj-4" : [ "comp", "Comp", 0 ],
