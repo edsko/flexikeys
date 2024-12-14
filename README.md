@@ -22,3 +22,45 @@ Explanation of the interface:
   - If no notes are selected, no output is emitted (the note will be silent).
 * Finally, we have a **per note velocity curve**.
 
+## Presets
+
+Presets are simple `json` files, which makes it possible to generate them in
+code, if desired (of course, these presets can also be created in the interface
+itself, as described above). Here is an example:
+
+```json
+{
+	"keyswitch 62" : 36,
+	"keyswitch 64" : 36,
+	"keyswitch 67" : 36,
+	"keyswitch 71" : 36,
+	"keyswitch 72" : 36,
+	"keyswitch 74" : 36,
+	"keyswitch 79" : 36,
+	"keyswitch 81" : 36,
+	"keyswitch 69" : 37,
+	"keyswitch 60" : 38,
+	"keyswitch 76" : 39,
+	"keyswitch 65" : 40,
+	"pitch 60" : [ 69, 70, 72, 74, 76, 77, 81 ],
+	"pitch 62" : 69,
+	"pitch 64" : 70,
+	"pitch 65" : [ 69, 70, 72, 74, 76, 77, 81 ],
+	"pitch 67" : 72,
+	"pitch 69" : 62,
+	"pitch 71" : 62,
+	"pitch 72" : 74,
+	"pitch 74" : 76,
+	"pitch 76" : [ 69, 70, 72 ],
+	"pitch 79" : 77,
+	"pitch 81" : 81,
+	"velocity 60" : [ 0.5, 0.0, 0, 32 ],
+	"velocity 65" : [ 0.5, 0.0, 0, 32 ]
+}
+```
+
+This particular preset sets up a 16-pad MIDI controller for playing the
+Soniccouture Hang Mk 2 handpan. The arguments to the velocity curve are
+`drive`, `comp`, `out low` and `out hi`.
+
+
