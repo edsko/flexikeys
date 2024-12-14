@@ -10,10 +10,35 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 250.0, 219.0, 1021.0, 628.0 ],
+		"rect" : [ 188.0, 213.0, 1021.0, 628.0 ],
 		"openinpresentation" : 1,
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
+				"box" : 				{
+					"fontsize" : 8.0,
+					"id" : "obj-12",
+					"linecount" : 5,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 320.0, 360.0, 111.0, 52.0 ],
+					"text" : "JS runs in the low-priority thread, so we must defer the incoming velocity so ensure JS has had a chance to run before we process it."
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-23",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 264.0, 375.0, 54.0, 22.0 ],
+					"text" : "deferlow"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"fontsize" : 8.0,
 					"id" : "obj-17",
@@ -454,6 +479,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-9", 0 ],
+					"source" : [ "obj-23", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-11", 1 ],
 					"source" : [ "obj-24", 0 ]
 				}
@@ -461,7 +493,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-9", 0 ],
+					"destination" : [ "obj-23", 0 ],
 					"source" : [ "obj-25", 0 ]
 				}
 
@@ -546,7 +578,7 @@
 
 			}
  ],
-		"originid" : "pat-144",
+		"originid" : "pat-230",
 		"parameters" : 		{
 			"obj-2" : [ "drive", "Drive", 0 ],
 			"obj-4" : [ "comp", "Comp", 0 ],
